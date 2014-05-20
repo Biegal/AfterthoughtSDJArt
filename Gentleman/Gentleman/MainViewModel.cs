@@ -1,13 +1,23 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Input;
 
 namespace Gentleman
 {
-    public class MainViewModel
+    public class MainViewModel : INotifyPropertyChanged
     {
         public string Name { get; set; }
 
-        public string Result { get; set; }
+        private string _result;
+        public string Result
+        {
+            get { return _result; }
+            set
+            {
+                _result = value;
+                RaisePropertyChanged("Result");
+            }
+        }
 
         private ICommand _getResultCommand;
         public ICommand GetResultCommand
@@ -21,6 +31,17 @@ namespace Gentleman
             if (!String.IsNullOrEmpty(Name))
             {
                 Result = String.Format("Cześć, {0} !", Name);
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void RaisePropertyChanged(string propertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }
