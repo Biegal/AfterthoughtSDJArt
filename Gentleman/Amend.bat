@@ -1,2 +1,5 @@
 xcopy "NotifyAmendment\bin\Debug\NotifyAmendment.dll" "Gentleman\bin\Debug\"
-Tools\Afterthought.Amender.exe "Gentleman\bin\Debug\Gentleman.exe" "NotifyAmendment\bin\Debug\NotifyAmendment.dll"
+xcopy "TimerAmendment\bin\Debug\TimerAmendment.dll" "Gentleman\bin\Debug\"
+START /WAIT Tools\Afterthought.Amender.exe "Gentleman\bin\Debug\Gentleman.exe" "NotifyAmendment\bin\Debug\NotifyAmendment.dll"
+rm "Gentleman\bin\Debug\Gentleman.exe.afterthought"
+Tools\Afterthought.Amender.exe "Gentleman\bin\Debug\Gentleman.exe" "TimerAmendment\bin\Debug\TimerAmendment.dll"
